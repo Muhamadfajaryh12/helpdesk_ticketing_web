@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Breadcrumb } from "../components/navigation/Breadcrumb";
 import DataTable from "react-data-table-component";
 import PrimaryButton from "../components/button/PrimaryButton";
@@ -29,6 +29,12 @@ const Ticketing = () => {
     setDataDetailTicket(response.data);
     setOpenDrawer(true);
   };
+
+  const handleOpenFormTicket = () => {
+    setDataDetailTicket(null);
+    setOpenDrawer(true);
+  };
+
   return (
     <div className="relative">
       <Breadcrumb data={["Teknisi", "Ticket"]} />
@@ -36,7 +42,7 @@ const Ticketing = () => {
         <div className="w-32">
           <PrimaryButton
             text={"Buat ticket"}
-            onClick={() => setOpenDrawer(true)}
+            onClick={() => handleOpenFormTicket()}
           />
         </div>
       </div>

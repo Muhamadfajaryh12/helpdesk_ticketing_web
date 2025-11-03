@@ -1,9 +1,15 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "../components/navigation/Sidebar";
 import Navbar from "../components/navigation/Navbar";
+import { useAuth } from "../context/AuthContext";
 
 const MainLayout = () => {
+  const { token, loading } = useAuth();
+  if (loading) {
+    return <div></div>;
+  }
+  if (!token) return <Navigate to="/" />;
   return (
     <main className="w-screen h-screen ">
       <div className="flex ">
