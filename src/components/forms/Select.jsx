@@ -11,6 +11,9 @@ const Select = ({ name, label, labelField, valueField, data, ...props }) => {
         className="w-full inline-block border border-gray-400 p-2 rounded-sm mt-1"
         {...props}
       >
+        <option value="" disabled>
+          Choose
+        </option>
         {data?.map((item) => (
           <option value={item[valueField]}>{item[labelField]}</option>
         ))}

@@ -1,0 +1,82 @@
+import React, { useEffect } from "react";
+import TextInput from "./TextInput";
+import Select from "./Select";
+import PrimaryButton from "../button/PrimaryButton";
+import StatusBadge from "../badge/StatusBadge";
+import { useForm } from "react-hook-form";
+
+const TicketForm = ({ data, setOpen, dataCategory, dataPriority }) => {
+  const {
+    register,
+    setValue,
+    formState: { errors },
+  } = useForm();
+
+  useEffect(() => {
+    if (data) {
+      setValue("title", data.title);
+      setValue("description", data.description);
+      setValue("category", data.category_id);
+      setValue("priority", data.priority_id);
+    }
+  }, [data]);
+
+  return (
+    <div>
+      <div className="flex justify-between items-center-safe mb-4">
+        <h1 className="font-bold text-2xl">Formulir Ticket</h1>
+        <button onClick={() => setOpen(false)}>X</button>
+      </div>
+      <form className="flex flex-col gap-2">
+        <TextInput
+          type={"text"}
+          label={"Judul ticket"}
+          name={"title"}
+          {...register("title", { required: true })}
+        />
+        <TextInput
+          type={"text"}
+          label={"Deskripsi"}
+          name={"description"}
+          {...register("description", { required: true })}
+        />
+        <Select
+          name={"category"}
+          label={"Kategori"}
+          data={dataCategory}
+          labelField={"category"}
+          valueField={"id"}
+          {...register("category", { required: true })}
+        />
+        <Select
+          name={"priority"}
+          label={"Prioritas"}
+          data={dataPriority}
+          labelField={"priority"}
+          valueField={"id"}
+          {...register("priority", { required: true })}
+        />
+
+        <PrimaryButton text={"Submit"} />
+      </form>
+      {data && (
+        <div className="">
+          <h1 className="font-bold text-2xl mb-2">Detail Ticket</h1>
+          <h6 className="mb-2">Assigned to : {data.assigned}</h6>
+          <div className="flex flex-col gap-2">
+            {data?.ticket_log?.map((item) => (
+              <div className="flex items-center-safe gap-2">
+                <StatusBadge status={item.status} />
+                <span className="text-sm">
+                  {new Date(item.status_at).toLocaleString("id-ID")}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default TicketForm;
