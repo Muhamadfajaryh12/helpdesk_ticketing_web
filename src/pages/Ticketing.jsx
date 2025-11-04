@@ -33,6 +33,7 @@ const Ticketing = () => {
   const dataTeknisi = useFetch({
     url: base_url + "/user/teknisi",
   });
+
   const handleDetailTicket = async (param) => {
     const response = await TicketAPI.getDetailTicket(param);
     setDataDetailTicket(response);
@@ -43,7 +44,7 @@ const Ticketing = () => {
     setDataDetailTicket(null);
     setOpenDrawer(true);
   };
-
+  console.log(dataTicket);
   return (
     <div className="relative">
       <Breadcrumb data={["Teknisi", "Ticket"]} />
@@ -57,19 +58,36 @@ const Ticketing = () => {
       </div>
       <DataTable
         data={dataTicket?.data}
+        pagination
         columns={[
           {
-            name: "No",
-            selector: (row, index) => index + 1,
+            name: "ID Ticket",
+            selector: (row, index) => <p>#{index + 1}</p>,
           },
           {
             name: "Title",
-            selector: (row) => row.title,
+            selector: (row) => (
+              <div>
+                <p className="font-bold">{row.title}</p>
+                <p className="text-xs">
+                  {new Date(row.created_at).toLocaleDateString("id-ID", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </p>
+              </div>
+            ),
           },
           {
             name: "Category",
             selector: (row) => row.category,
           },
+          {
+            name: "Name",
+            selector: (row) => row.user,
+          },
+
           {
             name: "Priority",
             selector: (row) => <PriorityBadge priority={row.priority} />,
@@ -78,10 +96,7 @@ const Ticketing = () => {
             name: "Status",
             selector: (row) => <StatusBadge status={row.status} />,
           },
-          {
-            name: "Date",
-            selector: (row) => row.created_at,
-          },
+
           {
             name: "Action",
             selector: (row) => (
