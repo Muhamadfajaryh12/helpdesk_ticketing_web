@@ -4,12 +4,22 @@ import Select from "./Select";
 import PrimaryButton from "../button/PrimaryButton";
 import StatusBadge from "../badge/StatusBadge";
 import { useForm } from "react-hook-form";
+import TicketAPI from "../../shared/TicketAPI";
 
-const TicketForm = ({ data, setOpen, dataCategory, dataPriority }) => {
+const TicketForm = ({
+  data,
+  setOpen,
+  dataCategory,
+  dataPriority,
+  dataStatus,
+  dataTeknisi,
+}) => {
   const {
     register,
     setValue,
     formState: { errors },
+    handleSubmit,
+    reset,
   } = useForm();
 
   useEffect(() => {
@@ -18,27 +28,57 @@ const TicketForm = ({ data, setOpen, dataCategory, dataPriority }) => {
       setValue("description", data.description);
       setValue("category", data.category_id);
       setValue("priority", data.priority_id);
+      setValue("status", data.status_id);
     }
   }, [data]);
 
+  const handleInsertTicket = async (data) => {
+    const response = await TicketAPI.InsertTicket({
+      title: data.title,
+      description: data.description,
+      category_id: data.category,
+      priority_id: data.priority,
+      status_id: data.status,
+    });
+    if (response.status == "success") {
+      reset();
+    }
+  };
+
+  const handleAssignedTechnician = async (datas) => {
+    const response = await TicketAPI.updateTicket({
+      assigned_id: datas.teknisi,
+      status_id: datas.status,
+      id: data.id,
+    });
+
+    console.log(response);
+  };
   return (
     <div>
       <div className="flex justify-between items-center-safe mb-4">
         <h1 className="font-bold text-2xl">Formulir Ticket</h1>
         <button onClick={() => setOpen(false)}>X</button>
       </div>
-      <form className="flex flex-col gap-2">
+      <form
+        className="flex flex-col gap-2"
+        onSubmit={handleSubmit(
+          data ? handleAssignedTechnician : handleInsertTicket
+        )}
+      >
         <TextInput
           type={"text"}
           label={"Judul ticket"}
           name={"title"}
           {...register("title", { required: true })}
+          readOnly={data && true}
         />
         <TextInput
           type={"text"}
           label={"Deskripsi"}
           name={"description"}
           {...register("description", { required: true })}
+          readOnly={data && true}
         />
         <Select
           name={"category"}
@@ -47,6 +87,7 @@ const TicketForm = ({ data, setOpen, dataCategory, dataPriority }) => {
           labelField={"category"}
           valueField={"id"}
           {...register("category", { required: true })}
+          readOnly={data && true}
         />
         <Select
           name={"priority"}
@@ -55,9 +96,27 @@ const TicketForm = ({ data, setOpen, dataCategory, dataPriority }) => {
           labelField={"priority"}
           valueField={"id"}
           {...register("priority", { required: true })}
+          readOnly={data && true}
         />
-
-        <PrimaryButton text={"Submit"} />
+        <Select
+          name={"status"}
+          label={"Status"}
+          data={dataStatus}
+          labelField={"status"}
+          valueField={"id"}
+          {...register("status", { required: true })}
+        />
+        {data && (
+          <Select
+            name={"teknisi"}
+            label={"Teknisi"}
+            data={dataTeknisi}
+            labelField={"name"}
+            valueField={"id"}
+            {...register("teknisi", { required: true })}
+          />
+        )}
+        <PrimaryButton text={"Submit"} type={"submit"} />
       </form>
       {data && (
         <div className="">

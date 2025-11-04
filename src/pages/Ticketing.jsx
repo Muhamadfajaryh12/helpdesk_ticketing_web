@@ -5,7 +5,9 @@ import PrimaryButton from "../components/button/PrimaryButton";
 import Drawer from "../components/Drawer";
 import useFetch from "../hooks/useFetch";
 import TicketForm from "../components/forms/TicketForm";
-import axios from "axios";
+import TicketAPI from "../shared/TicketAPI";
+import StatusBadge from "../components/badge/StatusBadge";
+import PriorityBadge from "../components/badge/PriorityBadge";
 
 const Ticketing = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -24,9 +26,16 @@ const Ticketing = () => {
     url: base_url + "/ticket",
   });
 
+  const dataStatus = useFetch({
+    url: base_url + "/status",
+  });
+
+  const dataTeknisi = useFetch({
+    url: base_url + "/user/teknisi",
+  });
   const handleDetailTicket = async (param) => {
-    const response = await axios.get(base_url + `/ticket/${param}`);
-    setDataDetailTicket(response.data);
+    const response = await TicketAPI.getDetailTicket(param);
+    setDataDetailTicket(response);
     setOpenDrawer(true);
   };
 
@@ -63,11 +72,11 @@ const Ticketing = () => {
           },
           {
             name: "Priority",
-            selector: (row) => row.priority,
+            selector: (row) => <PriorityBadge priority={row.priority} />,
           },
           {
             name: "Status",
-            selector: (row) => row.status,
+            selector: (row) => <StatusBadge status={row.status} />,
           },
           {
             name: "Date",
@@ -90,6 +99,8 @@ const Ticketing = () => {
           setOpen={setOpenDrawer}
           dataCategory={dataCategory?.data}
           dataPriority={dataPriority?.data}
+          dataStatus={dataStatus?.data}
+          dataTeknisi={dataTeknisi?.data}
           data={dataDetailTicket?.data}
         />
       </Drawer>

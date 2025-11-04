@@ -8,17 +8,22 @@ const useFetch = ({ url, auth = false }) => {
     error: null,
   });
 
+  const getToken = localStorage.getItem("token");
+
+  const optionHeader = {
+    headers: {
+      Authorization: `Bearer ${getToken}`,
+    },
+  };
   const fetchAPI = async (value) => {
     try {
-      console.log(value);
-      const response = await axios.get(url);
+      const response = await axios.get(value, optionHeader);
       setState({
         data: response.data.data,
         loading: false,
         error: null,
       });
     } catch (error) {
-      console.log(error);
       setState({
         data: [],
         loading: false,
