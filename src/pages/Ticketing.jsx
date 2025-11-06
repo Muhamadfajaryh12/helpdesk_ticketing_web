@@ -8,10 +8,13 @@ import TicketForm from "../components/forms/TicketForm";
 import TicketAPI from "../shared/TicketAPI";
 import StatusBadge from "../components/badge/StatusBadge";
 import PriorityBadge from "../components/badge/PriorityBadge";
+import { useModal } from "../context/ModalContext";
+import ReviewModal from "../components/modal/ReviewModal";
 
 const Ticketing = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [dataDetailTicket, setDataDetailTicket] = useState(null);
+  const { openModal } = useModal();
   const base_url = import.meta.env.VITE_API_URL;
 
   const dataCategory = useFetch({
@@ -104,6 +107,13 @@ const Ticketing = () => {
                 <button onClick={() => handleDetailTicket(row.id)}>
                   Lihat
                 </button>
+                {row.status == "Resolved" && (
+                  <button
+                    onClick={() => openModal(<ReviewModal id={row.id} />)}
+                  >
+                    Close Ticket
+                  </button>
+                )}
               </div>
             ),
           },

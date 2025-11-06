@@ -20,7 +20,12 @@ const StatusBadge = ({ status }) => {
           <p className="text-center">{status}</p>
         </div>
       );
-
+    case "closed":
+      return (
+        <div className="p-2 bg-gray-200 text-xs w-20 rounded-sm text-gray-600 font-semibold">
+          <p className="text-center">{status}</p>
+        </div>
+      );
     default:
       break;
   }
