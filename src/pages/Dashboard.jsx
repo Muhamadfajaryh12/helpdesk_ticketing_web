@@ -1,12 +1,13 @@
 import React from "react";
 import { Breadcrumb } from "../components/navigation/Breadcrumb";
 import useFetch from "../hooks/useFetch";
+import StackedBar from "../components/chart/StackedBar";
 
 const Dashboard = () => {
   const BASE_URL = import.meta.env.VITE_API_URL + "/dashboard";
-  const dataSummaryTicket = useFetch({ url: BASE_URL });
+  const data = useFetch({ url: BASE_URL });
 
-  console.log(dataSummaryTicket);
+  console.log(data);
   return (
     <div>
       <Breadcrumb data={["Teknisi", "Dashboard"]} />
@@ -14,28 +15,49 @@ const Dashboard = () => {
         <div className="border border-gray-200 rounded-md p-4">
           <h6 className="text-sm font-bold mb-2">Total Ticket</h6>
           <h1 className="text-3xl font-extrabold">
-            {dataSummaryTicket.data.total_ticket}
+            {data.data.summary_ticket?.total_ticket}
           </h1>
         </div>
         <div className="border border-gray-200 rounded-md p-4">
           <h6 className="text-sm font-bold mb-2">Ticket Open</h6>
           <h1 className="text-3xl font-extrabold">
-            {dataSummaryTicket.data.total_open}
+            {data.data.summary_ticket?.total_open}
           </h1>
         </div>
         <div className="border border-gray-200 rounded-md p-4">
           <h6 className="text-sm font-bold mb-2">Ticket In Progress</h6>
           <h1 className="text-3xl font-extrabold">
-            {dataSummaryTicket.data.total_in_progress}
+            {data.data.summary_ticket?.total_in_progress}
           </h1>
         </div>
         <div className="border border-gray-200 rounded-md p-4">
           <h6 className="text-sm font-bold mb-2">Total Close</h6>
           <h1 className="text-3xl font-extrabold">
-            {dataSummaryTicket.data.total_close}
+            {data.data.summary_ticket?.total_close}
           </h1>
         </div>
       </div>
+      <StackedBar
+        data={data?.data?.summary_category_priority}
+        category={"category"}
+        label={["Low", "Medium", "High", "Urgent"]}
+        valueKey={"priority"}
+        countKey={"total_ticket"}
+      />
+      <StackedBar
+        data={data?.data?.summary_category_status}
+        category={"category"}
+        label={[
+          "Open",
+          "In Progress",
+          "Resolved",
+          "Close",
+          "Pending",
+          "On Hold",
+        ]}
+        valueKey={"status"}
+        countKey={"total_ticket"}
+      />
     </div>
   );
 };

@@ -6,6 +6,7 @@ import MainLayout from "../layouts/MainLayout";
 import Dashboard from "../pages/Dashboard";
 import Ticketing from "../pages/Ticketing";
 import TicketingLog from "../pages/TicketingLog";
+import Performance from "../pages/Performance";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "ticketing/log",
         element: <TicketingLog />,
+      },
+      {
+        path: "performance",
+        element: <Performance />,
       },
     ],
   },

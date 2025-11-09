@@ -17,7 +17,7 @@ const linkData = [
     icon: <BsTicket />,
   },
   {
-    path: "/",
+    path: "/teknisi/performance",
     name: "Performance",
     icon: <IoBarChartOutline />,
   },
