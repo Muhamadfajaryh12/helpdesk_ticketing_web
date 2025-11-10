@@ -7,6 +7,7 @@ const ChartBar = ({
   valueKey,
   titleXaxis,
   titleYaxis,
+  horizontal,
 }) => {
   const categories = data?.map((item) => item[category]);
 
@@ -24,7 +25,7 @@ const ChartBar = ({
     plotOptions: {
       bar: {
         borderRadius: 6,
-        horizontal: true,
+        horizontal: horizontal,
       },
     },
     xaxis: {
@@ -35,7 +36,7 @@ const ChartBar = ({
       title: { text: titleYaxis },
     },
   };
-  return <Chart options={options} series={series} />;
+  return <Chart options={options} series={series} type="bar" height={350} />;
 };
 
 export default ChartBar;

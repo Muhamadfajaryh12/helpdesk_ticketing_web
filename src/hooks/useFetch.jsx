@@ -42,7 +42,32 @@ const useFetch = ({ url, auth = false }) => {
     }
   }, [url]);
 
-  return state;
+  const insertData = (value) => {
+    setState((prev) => ({
+      ...prev,
+      data: [...prev.data, value],
+    }));
+  };
+
+  const updateData = (value) => {
+    setState((prev) => ({
+      ...prev,
+      data: prev.data.map((item) => (item.id == value.id ? value : item)),
+    }));
+  };
+
+  const deleteData = (value) => {
+    setState((prev) => ({
+      ...prev,
+      data: prev.data.filter((item) => item.id != value),
+    }));
+  };
+  return {
+    ...state,
+    insertData,
+    updateData,
+    deleteData,
+  };
 };
 
 export default useFetch;

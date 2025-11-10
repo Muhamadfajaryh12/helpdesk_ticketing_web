@@ -2,6 +2,7 @@ import React from "react";
 import { Breadcrumb } from "../components/navigation/Breadcrumb";
 import useFetch from "../hooks/useFetch";
 import StackedBar from "../components/chart/StackedBar";
+import ChartBar from "../components/chart/ChartBar";
 
 const Dashboard = () => {
   const BASE_URL = import.meta.env.VITE_API_URL + "/dashboard";
@@ -37,26 +38,34 @@ const Dashboard = () => {
           </h1>
         </div>
       </div>
-      <StackedBar
-        data={data?.data?.summary_category_priority}
-        category={"category"}
-        label={["Low", "Medium", "High", "Urgent"]}
-        valueKey={"priority"}
-        countKey={"total_ticket"}
-      />
-      <StackedBar
-        data={data?.data?.summary_category_status}
-        category={"category"}
-        label={[
-          "Open",
-          "In Progress",
-          "Resolved",
-          "Close",
-          "Pending",
-          "On Hold",
-        ]}
-        valueKey={"status"}
-        countKey={"total_ticket"}
+      <div className="grid grid-cols-2 gap-4">
+        <StackedBar
+          data={data?.data?.summary_category_priority}
+          category={"category"}
+          label={["Low", "Medium", "High", "Urgent"]}
+          valueKey={"priority"}
+          countKey={"total_ticket"}
+        />
+        <StackedBar
+          data={data?.data?.summary_category_status}
+          category={"category"}
+          label={[
+            "Open",
+            "In Progress",
+            "Resolved",
+            "Close",
+            "Pending",
+            "On Hold",
+          ]}
+          valueKey={"status"}
+          countKey={"total_ticket"}
+        />
+      </div>
+      <ChartBar
+        data={data?.data?.summary_ticket_month}
+        category={"date"}
+        valueKey={"total_ticket"}
+        horizontal={false}
       />
     </div>
   );

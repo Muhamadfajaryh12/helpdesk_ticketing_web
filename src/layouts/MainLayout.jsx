@@ -3,6 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "../components/navigation/Sidebar";
 import Navbar from "../components/navigation/Navbar";
 import { useAuth } from "../context/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
   const { token, loading } = useAuth();
@@ -21,6 +22,7 @@ const MainLayout = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </main>
   );
 };

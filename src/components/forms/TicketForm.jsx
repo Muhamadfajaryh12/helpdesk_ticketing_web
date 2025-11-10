@@ -5,6 +5,7 @@ import PrimaryButton from "../button/PrimaryButton";
 import StatusBadge from "../badge/StatusBadge";
 import { useForm } from "react-hook-form";
 import TicketAPI from "../../shared/TicketAPI";
+import toast from "react-hot-toast";
 
 const TicketForm = ({
   data,
@@ -13,6 +14,7 @@ const TicketForm = ({
   dataPriority,
   dataStatus,
   dataTeknisi,
+  insertData,
 }) => {
   const {
     register,
@@ -24,11 +26,13 @@ const TicketForm = ({
 
   useEffect(() => {
     if (data) {
+      console.log(data);
       setValue("title", data.title);
       setValue("description", data.description);
       setValue("category", data.category_id);
       setValue("priority", data.priority_id);
       setValue("status", data.status_id);
+      setValue("teknisi", data.assigned_id);
     }
   }, [data]);
 
@@ -40,7 +44,10 @@ const TicketForm = ({
       priority_id: data.priority,
       status_id: data.status,
     });
+
     if (response.status == "success") {
+      insertData(response.data);
+      toast.success(response.message);
       reset();
     }
   };
@@ -51,8 +58,6 @@ const TicketForm = ({
       status_id: datas.status,
       id: data.id,
     });
-
-    console.log(response);
   };
   return (
     <div>

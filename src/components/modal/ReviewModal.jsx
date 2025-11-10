@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { BsStar, BsStarFill } from "react-icons/bs";
 import PrimaryButton from "../button/PrimaryButton";
 import RatingAPI from "../../shared/RatingAPI";
+import { useModal } from "../../context/ModalContext";
+import toast from "react-hot-toast";
 
 const ReviewModal = ({ id }) => {
+  const { closeModal } = useModal();
   const [rating, setRating] = useState(0);
   const ratingData = [1, 2, 3, 4, 5];
   const handleRating = (event, value) => {
@@ -14,7 +17,10 @@ const ReviewModal = ({ id }) => {
   const handleSubmitRating = async (event) => {
     event.stopPropagation();
     const response = await RatingAPI.InsertReview({ id: id, rating: rating });
-    console.log(response);
+    if (response.status == "success") {
+      closeModal();
+      toast.success(response.message);
+    }
   };
 
   return (

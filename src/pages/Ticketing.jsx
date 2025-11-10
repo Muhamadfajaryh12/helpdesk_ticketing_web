@@ -17,23 +17,23 @@ const Ticketing = () => {
   const { openModal } = useModal();
   const base_url = import.meta.env.VITE_API_URL;
 
-  const dataCategory = useFetch({
+  const { data: dataCategory } = useFetch({
     url: base_url + "/category",
   });
 
-  const dataPriority = useFetch({
+  const { data: dataPriority } = useFetch({
     url: base_url + "/priority",
   });
 
-  const dataTicket = useFetch({
+  const { data: dataTicket, insertData } = useFetch({
     url: base_url + "/ticket",
   });
 
-  const dataStatus = useFetch({
+  const { data: dataStatus } = useFetch({
     url: base_url + "/status",
   });
 
-  const dataTeknisi = useFetch({
+  const { data: dataTeknisi } = useFetch({
     url: base_url + "/user/teknisi",
   });
 
@@ -60,12 +60,12 @@ const Ticketing = () => {
         </div>
       </div>
       <DataTable
-        data={dataTicket?.data}
+        data={dataTicket}
         pagination
         columns={[
           {
             name: "ID Ticket",
-            selector: (row, index) => <p>#{index + 1}</p>,
+            selector: (row, index) => <p>#{row.id}</p>,
           },
           {
             name: "Title",
@@ -122,11 +122,12 @@ const Ticketing = () => {
       <Drawer open={openDrawer}>
         <TicketForm
           setOpen={setOpenDrawer}
-          dataCategory={dataCategory?.data}
-          dataPriority={dataPriority?.data}
-          dataStatus={dataStatus?.data}
-          dataTeknisi={dataTeknisi?.data}
+          dataCategory={dataCategory}
+          dataPriority={dataPriority}
+          dataStatus={dataStatus}
+          dataTeknisi={dataTeknisi}
           data={dataDetailTicket?.data}
+          insertData={insertData}
         />
       </Drawer>
     </div>
