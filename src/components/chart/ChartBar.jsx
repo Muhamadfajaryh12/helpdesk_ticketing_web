@@ -8,14 +8,21 @@ const ChartBar = ({
   titleXaxis,
   titleYaxis,
   horizontal,
+  title,
 }) => {
   const categories = data?.map((item) => item[category]);
 
-  const series = [
-    {
-      data: data?.map((item) => item[valueKey]),
-    },
-  ];
+  const series = Array.isArray(valueKey)
+    ? valueKey.map((key) => ({
+        name: key.replace(/_/g, " ").toUpperCase(),
+        data: data.map((item) => item[key]),
+      }))
+    : [
+        {
+          name: valueKey.replace(/_/g, " ").toUpperCase(),
+          data: data.map((item) => item[valueKey]),
+        },
+      ];
 
   const options = {
     chart: {
@@ -26,6 +33,16 @@ const ChartBar = ({
       bar: {
         borderRadius: 6,
         horizontal: horizontal,
+        columnWidth: "45%",
+      },
+    },
+    title: {
+      text: title,
+      align: "center",
+      style: {
+        fontSize: "12px",
+        fontWeight: "bold",
+        color: "#333",
       },
     },
     xaxis: {

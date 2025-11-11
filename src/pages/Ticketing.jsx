@@ -25,7 +25,11 @@ const Ticketing = () => {
     url: base_url + "/priority",
   });
 
-  const { data: dataTicket, insertData } = useFetch({
+  const {
+    data: dataTicket,
+    insertData,
+    updateData,
+  } = useFetch({
     url: base_url + "/ticket",
   });
 
@@ -109,7 +113,11 @@ const Ticketing = () => {
                 </button>
                 {row.status == "Resolved" && (
                   <button
-                    onClick={() => openModal(<ReviewModal id={row.id} />)}
+                    onClick={() =>
+                      openModal(
+                        <ReviewModal id={row.id} updateData={updateData} />
+                      )
+                    }
                   >
                     Close Ticket
                   </button>
@@ -128,6 +136,7 @@ const Ticketing = () => {
           dataTeknisi={dataTeknisi}
           data={dataDetailTicket?.data}
           insertData={insertData}
+          updateData={updateData}
         />
       </Drawer>
     </div>

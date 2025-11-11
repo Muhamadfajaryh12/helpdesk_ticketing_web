@@ -5,7 +5,7 @@ import RatingAPI from "../../shared/RatingAPI";
 import { useModal } from "../../context/ModalContext";
 import toast from "react-hot-toast";
 
-const ReviewModal = ({ id }) => {
+const ReviewModal = ({ id, updateData }) => {
   const { closeModal } = useModal();
   const [rating, setRating] = useState(0);
   const ratingData = [1, 2, 3, 4, 5];
@@ -19,6 +19,7 @@ const ReviewModal = ({ id }) => {
     const response = await RatingAPI.InsertReview({ id: id, rating: rating });
     if (response.status == "success") {
       closeModal();
+      updateData(response.data);
       toast.success(response.message);
     }
   };

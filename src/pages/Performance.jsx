@@ -29,6 +29,8 @@ const Performance = () => {
           valueKey={"total_ticket"}
           titleXaxis={"Teknisi"}
           titleYaxis={"Ticket"}
+          horizontal={true}
+          title={"Total Ticket Technician"}
         />
         <ChartBar
           data={data?.data?.teknisi_review}
@@ -36,6 +38,19 @@ const Performance = () => {
           valueKey={"avg_review"}
           titleXaxis={"Teknisi"}
           titleYaxis={"Review"}
+          horizontal={true}
+          title={"Average Review Technician"}
+        />
+      </div>
+      <div className="my-4">
+        <ChartBar
+          data={data?.data?.teknisi_avg_time}
+          category={"name"}
+          valueKey={["avg_response", "avg_resolved"]}
+          titleXaxis={"Teknisi"}
+          titleYaxis={"Average time"}
+          horizontal={true}
+          title={"Average Time Technician"}
         />
       </div>
     </div>

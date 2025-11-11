@@ -15,6 +15,7 @@ const TicketForm = ({
   dataStatus,
   dataTeknisi,
   insertData,
+  updateData,
 }) => {
   const {
     register,
@@ -26,7 +27,6 @@ const TicketForm = ({
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setValue("title", data.title);
       setValue("description", data.description);
       setValue("category", data.category_id);
@@ -58,6 +58,10 @@ const TicketForm = ({
       status_id: datas.status,
       id: data.id,
     });
+    if (response.status == "success") {
+      updateData(response.data);
+      toast.success(response.message);
+    }
   };
   return (
     <div>
