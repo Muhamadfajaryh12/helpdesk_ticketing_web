@@ -10,6 +10,7 @@ import StatusBadge from "../components/badge/StatusBadge";
 import PriorityBadge from "../components/badge/PriorityBadge";
 import { useModal } from "../context/ModalContext";
 import ReviewModal from "../components/modal/ReviewModal";
+import TicketButton from "../components/button/TicketButton";
 
 const Ticketing = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -107,11 +108,17 @@ const Ticketing = () => {
           {
             name: "Action",
             selector: (row) => (
-              <div>
+              <div className="flex justify-center gap-2">
+                <TicketButton
+                  status={row.status}
+                  dataTechnician={dataTeknisi}
+                  id={row.id}
+                />
+
                 <button onClick={() => handleDetailTicket(row.id)}>
                   Lihat
                 </button>
-                {row.status == "Resolved" && (
+                {/* {row.status == "Resolved" && (
                   <button
                     onClick={() =>
                       openModal(
@@ -121,7 +128,7 @@ const Ticketing = () => {
                   >
                     Close Ticket
                   </button>
-                )}
+                )} */}
               </div>
             ),
           },

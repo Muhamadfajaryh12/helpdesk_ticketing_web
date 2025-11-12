@@ -31,8 +31,6 @@ const TicketForm = ({
       setValue("description", data.description);
       setValue("category", data.category_id);
       setValue("priority", data.priority_id);
-      setValue("status", data.status_id);
-      setValue("teknisi", data.assigned_id);
     }
   }, [data]);
 
@@ -42,7 +40,6 @@ const TicketForm = ({
       description: data.description,
       category_id: data.category,
       priority_id: data.priority,
-      status_id: data.status,
     });
 
     if (response.status == "success") {
@@ -107,28 +104,10 @@ const TicketForm = ({
           {...register("priority", { required: true })}
           readOnly={data && true}
         />
-        <Select
-          name={"status"}
-          label={"Status"}
-          data={dataStatus}
-          labelField={"status"}
-          valueField={"id"}
-          {...register("status", { required: true })}
-        />
-        {data && (
-          <Select
-            name={"teknisi"}
-            label={"Teknisi"}
-            data={dataTeknisi}
-            labelField={"name"}
-            valueField={"id"}
-            {...register("teknisi", { required: true })}
-          />
-        )}
-        <PrimaryButton text={"Submit"} type={"submit"} />
+        {!data && <PrimaryButton text={"Submit"} type={"submit"} />}
       </form>
       {data && (
-        <div className="">
+        <div className="mt-4">
           <h1 className="font-bold text-2xl mb-2">Detail Ticket</h1>
           <h6 className="mb-2">Assigned to : {data.assigned}</h6>
           <div className="flex flex-col gap-2">

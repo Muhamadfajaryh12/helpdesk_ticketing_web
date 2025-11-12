@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsTicket } from "react-icons/bs";
+import { BsStar, BsTicket } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoBarChartOutline } from "react-icons/io5";
 import { RxDashboard, RxHamburgerMenu } from "react-icons/rx";
@@ -13,13 +13,23 @@ const linkData = [
   },
   {
     path: "/teknisi/ticketing",
-    name: "Ticketing",
+    name: "Ticket",
+    icon: <BsTicket />,
+  },
+  {
+    path: "/teknisi/ticketing/log",
+    name: "Ticket Log",
     icon: <BsTicket />,
   },
   {
     path: "/teknisi/performance",
     name: "Performance",
     icon: <IoBarChartOutline />,
+  },
+  {
+    path: "/teknisi/Review",
+    name: "Review",
+    icon: <BsStar />,
   },
 ];
 

@@ -25,7 +25,7 @@ const ReviewModal = ({ id, updateData }) => {
   };
 
   return (
-    <div className="text-black">
+    <div className="text-black w-xl">
       <h1 className="font-bold text-black text-center mb-4 tracking-wide">
         Feedback Support
       </h1>
@@ -40,7 +40,7 @@ const ReviewModal = ({ id, updateData }) => {
           />
         ))}
       </div>
-      <p className="text-sm my-4">
+      <p className="text-sm my-4 text-center">
         Kami ingin tahu seberapa puas kamu dengan bantuan yang kamu terima
       </p>
       <PrimaryButton

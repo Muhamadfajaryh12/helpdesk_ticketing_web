@@ -7,6 +7,7 @@ import Dashboard from "../pages/Dashboard";
 import Ticketing from "../pages/Ticketing";
 import TicketingLog from "../pages/TicketingLog";
 import Performance from "../pages/Performance";
+import Review from "../pages/Review";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "performance",
         element: <Performance />,
+      },
+      {
+        path: "review",
+        element: <Review />,
       },
     ],
   },

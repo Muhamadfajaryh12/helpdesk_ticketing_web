@@ -49,7 +49,6 @@ const Performance = () => {
           valueKey={["avg_response", "avg_resolved"]}
           titleXaxis={"Teknisi"}
           titleYaxis={"Average time"}
-          horizontal={true}
           title={"Average Time Technician"}
         />
       </div>
