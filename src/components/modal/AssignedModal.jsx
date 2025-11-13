@@ -4,17 +4,21 @@ import Select from "../forms/Select";
 import TicketAPI from "../../shared/TicketAPI";
 import { useModal } from "../../context/ModalContext";
 import PrimaryButton from "../button/PrimaryButton";
+import toast from "react-hot-toast";
 
-const AssignedModal = ({ id, dataTechnician }) => {
+const AssignedModal = ({ id, dataTechnician, updateData }) => {
   const { closeModal } = useModal();
   const { register, handleSubmit } = useForm();
   const handleAssignedTechnician = async (data) => {
     const response = await TicketAPI.updateTicket({
       id: id,
       assigned_id: data.technician,
+      status_id: 2,
     });
     if (response.status == "success") {
-      ("");
+      updateData(response.data);
+      toast.success(response.message);
+      closeModal();
     }
   };
   return (

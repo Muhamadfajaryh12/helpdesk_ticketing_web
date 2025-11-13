@@ -113,6 +113,9 @@ const Ticketing = () => {
                   status={row.status}
                   dataTechnician={dataTeknisi}
                   id={row.id}
+                  dataStatus={dataStatus}
+                  status_id={row.status_id}
+                  updateData={updateData}
                 />
 
                 <button onClick={() => handleDetailTicket(row.id)}>

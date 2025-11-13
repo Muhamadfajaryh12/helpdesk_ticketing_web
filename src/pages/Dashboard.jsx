@@ -53,7 +53,7 @@ const Dashboard = () => {
             "Open",
             "In Progress",
             "Resolved",
-            "Close",
+            "Closed",
             "Pending",
             "On Hold",
           ]}
