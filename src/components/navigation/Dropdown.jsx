@@ -30,7 +30,9 @@ const Dropdown = ({ text, linkData }) => {
         {
           <ul>
             {linkData.map((item) => (
-              <li className="text-sm font-semibold p-2">{item.title}</li>
+              <li className="text-sm font-semibold p-2" onClick={item.func}>
+                {item.title}
+              </li>
             ))}
           </ul>
         }

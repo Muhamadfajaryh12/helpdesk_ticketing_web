@@ -10,7 +10,7 @@ const MainLayout = () => {
   if (loading) {
     return <div></div>;
   }
-  if (!token) return <Navigate to="/" />;
+  if (!token) return <Navigate to="/" replace />;
   return (
     <main className="w-screen h-screen ">
       <div className="flex ">

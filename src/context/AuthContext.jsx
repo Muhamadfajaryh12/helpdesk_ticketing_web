@@ -8,15 +8,18 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     if (token) {
       localStorage.removeItem("token");
+      setToken(null);
     }
   };
 
   useEffect(() => {
     const getToken = localStorage.getItem("token");
     if (getToken) {
-      setLoading(false);
       setToken(getToken);
+    } else {
+      setToken(null);
     }
+    setLoading(false);
   }, []);
 
   return (

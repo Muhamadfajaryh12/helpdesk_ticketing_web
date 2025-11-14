@@ -11,13 +11,18 @@ import PriorityBadge from "../components/badge/PriorityBadge";
 import { useModal } from "../context/ModalContext";
 import ReviewModal from "../components/modal/ReviewModal";
 import TicketButton from "../components/button/TicketButton";
+import Select from "../components/forms/Select";
 
 const Ticketing = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [dataDetailTicket, setDataDetailTicket] = useState(null);
   const { openModal } = useModal();
   const base_url = import.meta.env.VITE_API_URL;
-
+  const [filter, setFilter] = useState({
+    priority: "",
+    category: "",
+    status: "",
+  });
   const { data: dataCategory } = useFetch({
     url: base_url + "/category",
   });
@@ -53,10 +58,41 @@ const Ticketing = () => {
     setOpenDrawer(true);
   };
   console.log(dataTicket);
+  const filterData = dataTicket?.filter((item) => {
+    return (
+      (filter.category ? item.category_id == filter.category : true) &&
+      (filter.status ? item.status_id == filter.status : true) &&
+      (filter.priority ? item.priority_id == filter.priority : true)
+    );
+  });
   return (
     <div className="relative">
       <Breadcrumb data={["Teknisi", "Ticket"]} />
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-2 items-center">
+        <Select
+          data={dataCategory}
+          valueField={"id"}
+          labelField={"category"}
+          onClick={(e) =>
+            setFilter((prev) => ({ ...prev, category: e.target.value }))
+          }
+        />
+        <Select
+          data={dataStatus}
+          valueField={"id"}
+          labelField={"status"}
+          onClick={(e) =>
+            setFilter((prev) => ({ ...prev, status: e.target.value }))
+          }
+        />
+        <Select
+          data={dataPriority}
+          valueField={"id"}
+          labelField={"priority"}
+          onClick={(e) =>
+            setFilter((prev) => ({ ...prev, priority: e.target.value }))
+          }
+        />
         <div className="w-32">
           <PrimaryButton
             text={"Buat ticket"}
@@ -65,12 +101,12 @@ const Ticketing = () => {
         </div>
       </div>
       <DataTable
-        data={dataTicket}
+        data={filterData}
         pagination
         columns={[
           {
             name: "ID Ticket",
-            selector: (row, index) => <p>#{row.id}</p>,
+            selector: (row) => <p>#{row.id}</p>,
           },
           {
             name: "Title",

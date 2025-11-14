@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BsStar, BsTicket } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoBarChartOutline } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
 import { RxDashboard, RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 
@@ -30,6 +31,11 @@ const linkData = [
     path: "/teknisi/Review",
     name: "Review",
     icon: <BsStar />,
+  },
+  {
+    path: "/teknisi/technician",
+    name: "Techician",
+    icon: <FaUser />,
   },
 ];
 

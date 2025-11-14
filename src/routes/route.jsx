@@ -8,6 +8,7 @@ import Ticketing from "../pages/Ticketing";
 import TicketingLog from "../pages/TicketingLog";
 import Performance from "../pages/Performance";
 import Review from "../pages/Review";
+import Technician from "../pages/Technician";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "review",
         element: <Review />,
+      },
+      {
+        path: "technician",
+        element: <Technician />,
       },
     ],
   },
