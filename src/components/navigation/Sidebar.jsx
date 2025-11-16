@@ -5,42 +5,57 @@ import { IoBarChartOutline } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { RxDashboard, RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const linkData = [
   {
     path: "/admin",
     name: "Dashboard",
     icon: <RxDashboard />,
+    access: "admin",
   },
   {
     path: "/admin/ticketing",
     name: "Ticket",
     icon: <BsTicket />,
+    access: "admin",
   },
+
   {
     path: "/admin/ticketing/log",
     name: "Ticket Log",
     icon: <BsTicket />,
+    access: "admin",
   },
   {
     path: "/admin/performance",
     name: "Performance",
     icon: <IoBarChartOutline />,
+    access: "admin",
   },
   {
     path: "/admin/Review",
     name: "Review",
     icon: <BsStar />,
+    access: "admin",
   },
   {
     path: "/admin/technician",
     name: "Techician",
     icon: <FaUser />,
+    access: "admin",
+  },
+  {
+    path: "/general",
+    name: "Ticket",
+    icon: <BsTicket />,
+    access: "general",
   },
 ];
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
+  const { auth } = useAuth();
   return (
     <div
       className={`${
@@ -66,11 +81,14 @@ const Sidebar = () => {
           !open && "justify-center items-center"
         }`}
       >
-        {linkData.map((item) => (
-          <Link to={item.path} className="flex items-center gap-2">
-            {item.icon} {open && <span>{item.name}</span>}
-          </Link>
-        ))}
+        {linkData.map(
+          (item) =>
+            item.access == auth.role.toLowerCase() && (
+              <Link to={item.path} className="flex items-center gap-2">
+                {item.icon} {open && <span>{item.name}</span>}
+              </Link>
+            )
+        )}
       </div>
     </div>
   );

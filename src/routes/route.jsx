@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <MainLayout role={"Technician"} />,
+    element: <MainLayout role={"admin"} />,
     children: [
       {
         index: true,

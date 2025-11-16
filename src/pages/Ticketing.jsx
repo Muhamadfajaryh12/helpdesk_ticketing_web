@@ -12,8 +12,9 @@ import { useModal } from "../context/ModalContext";
 import ReviewModal from "../components/modal/ReviewModal";
 import TicketButton from "../components/button/TicketButton";
 import Select from "../components/forms/Select";
+import TicketDetail from "../components/section/TicketDetail";
 
-const Ticketing = () => {
+const Ticketing = ({ role }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [dataDetailTicket, setDataDetailTicket] = useState(null);
   const { openModal } = useModal();
@@ -94,12 +95,6 @@ const Ticketing = () => {
             setFilter((prev) => ({ ...prev, priority: e.target.value }))
           }
         />
-        <div className="w-32">
-          <PrimaryButton
-            text={"Buat ticket"}
-            onClick={() => handleOpenFormTicket()}
-          />
-        </div>
       </div>
       <DataTable
         data={filterData}
@@ -164,15 +159,9 @@ const Ticketing = () => {
         ]}
       />
       <Drawer open={openDrawer}>
-        <TicketForm
-          setOpen={setOpenDrawer}
-          dataCategory={dataCategory}
-          dataPriority={dataPriority}
-          dataStatus={dataStatus}
-          dataTeknisi={dataTeknisi}
+        <TicketDetail
           data={dataDetailTicket?.data}
-          insertData={insertData}
-          updateData={updateData}
+          setOpenDrawer={setOpenDrawer}
         />
       </Drawer>
     </div>
