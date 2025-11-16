@@ -8,7 +8,7 @@ const Select = ({ name, label, labelField, valueField, data, ...props }) => {
       </label>
       <select
         name={name}
-        className="w-full inline-block border border-gray-400 p-2 rounded-sm text-xs mt-1"
+        className="w-full inline-block border border-gray-400 p-2 rounded-sm  mt-1"
         {...props}
       >
         <option value="">Choose</option>

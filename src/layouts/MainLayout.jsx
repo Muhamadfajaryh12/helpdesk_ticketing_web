@@ -5,12 +5,15 @@ import Navbar from "../components/navigation/Navbar";
 import { useAuth } from "../context/AuthContext";
 import { Toaster } from "react-hot-toast";
 
-const MainLayout = () => {
-  const { token, loading } = useAuth();
+const MainLayout = ({ role }) => {
+  const { auth, loading } = useAuth();
   if (loading) {
     return <div></div>;
   }
-  if (!token) return <Navigate to="/" replace />;
+
+  if (!auth) return <Navigate to="/" replace />;
+  if (auth.role != role) return <Navigate to="/" replace />;
+
   return (
     <main className="w-screen h-screen ">
       <div className="flex ">

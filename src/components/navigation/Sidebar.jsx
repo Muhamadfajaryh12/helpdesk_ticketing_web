@@ -8,32 +8,32 @@ import { Link } from "react-router-dom";
 
 const linkData = [
   {
-    path: "/teknisi",
+    path: "/admin",
     name: "Dashboard",
     icon: <RxDashboard />,
   },
   {
-    path: "/teknisi/ticketing",
+    path: "/admin/ticketing",
     name: "Ticket",
     icon: <BsTicket />,
   },
   {
-    path: "/teknisi/ticketing/log",
+    path: "/admin/ticketing/log",
     name: "Ticket Log",
     icon: <BsTicket />,
   },
   {
-    path: "/teknisi/performance",
+    path: "/admin/performance",
     name: "Performance",
     icon: <IoBarChartOutline />,
   },
   {
-    path: "/teknisi/Review",
+    path: "/admin/Review",
     name: "Review",
     icon: <BsStar />,
   },
   {
-    path: "/teknisi/technician",
+    path: "/admin/technician",
     name: "Techician",
     icon: <FaUser />,
   },

@@ -13,14 +13,14 @@ const ChartBar = ({
   const categories = data?.map((item) => item[category]);
 
   const series = Array.isArray(valueKey)
-    ? valueKey.map((key) => ({
+    ? valueKey?.map((key) => ({
         name: key.replace(/_/g, " ").toUpperCase(),
-        data: data.map((item) => item[key]),
+        data: data?.map((item) => item[key]),
       }))
     : [
         {
           name: valueKey.replace(/_/g, " ").toUpperCase(),
-          data: data.map((item) => item[valueKey]),
+          data: data?.map((item) => item[valueKey]),
         },
       ];
 

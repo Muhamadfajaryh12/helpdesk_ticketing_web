@@ -26,6 +26,12 @@ const StatusBadge = ({ status }) => {
           <p className="text-center">{status}</p>
         </div>
       );
+    case "available":
+      return (
+        <div className="p-2 bg-green-200 text-xs w-20 rounded-sm text-green-600 font-semibold">
+          <p className="text-center">{status}</p>
+        </div>
+      );
     default:
       break;
   }

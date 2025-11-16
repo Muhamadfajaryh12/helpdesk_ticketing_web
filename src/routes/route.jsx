@@ -9,6 +9,7 @@ import TicketingLog from "../pages/TicketingLog";
 import Performance from "../pages/Performance";
 import Review from "../pages/Review";
 import Technician from "../pages/Technician";
+import TicketingGeneral from "../pages/general/TicketingGeneral";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +23,8 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/teknisi",
-    element: <MainLayout />,
+    path: "/admin",
+    element: <MainLayout role={"Technician"} />,
     children: [
       {
         index: true,
@@ -48,6 +49,16 @@ const router = createBrowserRouter([
       {
         path: "technician",
         element: <Technician />,
+      },
+    ],
+  },
+  {
+    path: "/general",
+    element: <MainLayout role={"General"} />,
+    children: [
+      {
+        index: true,
+        element: <TicketingGeneral />,
       },
     ],
   },

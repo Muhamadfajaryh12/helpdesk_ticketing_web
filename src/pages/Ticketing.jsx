@@ -57,7 +57,7 @@ const Ticketing = () => {
     setDataDetailTicket(null);
     setOpenDrawer(true);
   };
-  console.log(dataTicket);
+
   const filterData = dataTicket?.filter((item) => {
     return (
       (filter.category ? item.category_id == filter.category : true) &&
@@ -65,6 +65,7 @@ const Ticketing = () => {
       (filter.priority ? item.priority_id == filter.priority : true)
     );
   });
+
   return (
     <div className="relative">
       <Breadcrumb data={["Teknisi", "Ticket"]} />
@@ -157,17 +158,6 @@ const Ticketing = () => {
                 <button onClick={() => handleDetailTicket(row.id)}>
                   Lihat
                 </button>
-                {/* {row.status == "Resolved" && (
-                  <button
-                    onClick={() =>
-                      openModal(
-                        <ReviewModal id={row.id} updateData={updateData} />
-                      )
-                    }
-                  >
-                    Close Ticket
-                  </button>
-                )} */}
               </div>
             ),
           },

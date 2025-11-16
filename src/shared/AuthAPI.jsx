@@ -16,8 +16,23 @@ const AuthAPI = (() => {
     }
   };
 
+  const InsertUser = async ({ name, email, password, role }) => {
+    try {
+      const response = await axios.post(`${baseURL}/register`, {
+        email,
+        name,
+        password,
+        role,
+      });
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return {
     Login,
+    InsertUser,
   };
 })();
 

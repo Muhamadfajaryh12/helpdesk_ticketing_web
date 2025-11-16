@@ -7,7 +7,7 @@ import StatusBadge from "../components/badge/StatusBadge";
 const TicketingLog = () => {
   const BASE_URL = import.meta.env.VITE_API_URL;
   const dataTicketLog = useFetch({ url: BASE_URL + "/ticket-log" });
-  console.log(dataTicketLog);
+
   return (
     <div>
       <Breadcrumb data={["Ticketing", "Log"]} />
