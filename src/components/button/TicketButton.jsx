@@ -33,18 +33,7 @@ const TicketButton = ({
           <span>Assign Ticket</span>
         </button>
       );
-    case "resolved":
-      return (
-        <button
-          className="flex gap-1 items-center justify-center text-sm font-semibold text-green-500"
-          onClick={() =>
-            openModal(<ReviewModal updateData={updateData} id={id} />)
-          }
-        >
-          <IoMdOpen />
-          <span>Close Ticket</span>
-        </button>
-      );
+
     case "in progress":
       return (
         <button

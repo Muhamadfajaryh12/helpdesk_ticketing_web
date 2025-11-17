@@ -25,7 +25,9 @@ const Login = () => {
         name: decoded.name,
         id: decoded.user_id,
       });
-      navigate("/admin");
+      decoded.role.toLowerCase() == "general"
+        ? navigate("/general")
+        : navigate("/admin");
     }
   };
   return (

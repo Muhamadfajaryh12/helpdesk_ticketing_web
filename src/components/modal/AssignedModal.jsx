@@ -39,7 +39,7 @@ const AssignedModal = ({ id, dataTechnician, updateData }) => {
         className="flex flex-col gap-2"
       >
         <Select
-          data={dataTechnician}
+          data={dataTechnician.filter((item) => item.status != "not available")}
           label={"Technician"}
           labelField={"name"}
           valueField={"id"}

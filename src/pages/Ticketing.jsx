@@ -13,6 +13,7 @@ import ReviewModal from "../components/modal/ReviewModal";
 import TicketButton from "../components/button/TicketButton";
 import Select from "../components/forms/Select";
 import TicketDetail from "../components/section/TicketDetail";
+import { IoMdOpen } from "react-icons/io";
 
 const Ticketing = ({ role }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -45,7 +46,7 @@ const Ticketing = ({ role }) => {
   });
 
   const { data: dataTeknisi } = useFetch({
-    url: base_url + "/user/teknisi",
+    url: base_url + "/user/technician",
   });
 
   const handleDetailTicket = async (param) => {
@@ -150,8 +151,11 @@ const Ticketing = ({ role }) => {
                   updateData={updateData}
                 />
 
-                <button onClick={() => handleDetailTicket(row.id)}>
-                  Lihat
+                <button
+                  onClick={() => handleDetailTicket(row.id)}
+                  className="flex gap-1 items-center"
+                >
+                  <IoMdOpen /> <span>View</span>
                 </button>
               </div>
             ),

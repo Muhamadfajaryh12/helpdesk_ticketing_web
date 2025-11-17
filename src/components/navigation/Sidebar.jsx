@@ -4,7 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoBarChartOutline } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { RxDashboard, RxHamburgerMenu } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const linkData = [
@@ -56,6 +56,8 @@ const linkData = [
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const { auth } = useAuth();
+  const path = useLocation();
+  console.log(path.pathname);
   return (
     <div
       className={`${
@@ -84,7 +86,14 @@ const Sidebar = () => {
         {linkData.map(
           (item) =>
             item.access == auth.role.toLowerCase() && (
-              <Link to={item.path} className="flex items-center gap-2">
+              <Link
+                to={item.path}
+                className={`flex items-center gap-2 p-2 rounded-md ${
+                  path.pathname == item.path
+                    ? "bg-violet-500 text-white font-semibold"
+                    : ""
+                }`}
+              >
                 {item.icon} {open && <span>{item.name}</span>}
               </Link>
             )
