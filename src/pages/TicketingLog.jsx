@@ -10,7 +10,7 @@ const TicketingLog = () => {
 
   return (
     <div>
-      <Breadcrumb data={["Ticketing", "Log"]} />
+      <Breadcrumb data={["Admin", "Ticket", "Log"]} />
       <DataTable
         data={dataTicketLog.data}
         pagination

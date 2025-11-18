@@ -6,17 +6,17 @@ import ChartBar from "../components/chart/ChartBar";
 const Performance = () => {
   const BASE_URL = import.meta.env.VITE_API_URL;
   const data = useFetch({ url: `${BASE_URL}/dashboard/performance` });
-  console.log(data);
+
   return (
     <div>
-      <Breadcrumb data={["Performance", "Analytic"]} />
-      <div className="grid grid-cols-2 gap-4">
+      <Breadcrumb data={["Admin", "Analytic Performance"]} />
+      <div className="grid grid-cols-2 gap-4 my-4">
         <div className="border border-gray-200 rounded-md p-4">
           <h6 className="text-sm font-bold mb-2">Average In Progress</h6>
           <h1 className="text-3xl font-extrabold">
             {data.data?.avg_in_progress} Minute
           </h1>
-        </div>{" "}
+        </div>
         <div className="border border-gray-200 rounded-md p-4">
           <h6 className="text-sm font-bold mb-2">Average Resolved</h6>
           <h1 className="text-3xl font-extrabold">
@@ -42,7 +42,7 @@ const Performance = () => {
           title={"Average Review Technician"}
         />
       </div>
-      <div className="my-4">
+      <div className="my-4 ">
         <ChartBar
           data={data?.data?.teknisi_avg_time}
           category={"name"}

@@ -1,24 +1,19 @@
 import { useState } from "react";
 import { Breadcrumb } from "../components/navigation/Breadcrumb";
 import DataTable from "react-data-table-component";
-import PrimaryButton from "../components/button/PrimaryButton";
 import Drawer from "../components/Drawer";
 import useFetch from "../hooks/useFetch";
-import TicketForm from "../components/forms/TicketForm";
 import TicketAPI from "../shared/TicketAPI";
 import StatusBadge from "../components/badge/StatusBadge";
 import PriorityBadge from "../components/badge/PriorityBadge";
-import { useModal } from "../context/ModalContext";
-import ReviewModal from "../components/modal/ReviewModal";
 import TicketButton from "../components/button/TicketButton";
 import Select from "../components/forms/Select";
 import TicketDetail from "../components/section/TicketDetail";
 import { IoMdOpen } from "react-icons/io";
 
-const Ticketing = ({ role }) => {
+const Ticketing = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [dataDetailTicket, setDataDetailTicket] = useState(null);
-  const { openModal } = useModal();
   const base_url = import.meta.env.VITE_API_URL;
   const [filter, setFilter] = useState({
     priority: "",
@@ -33,11 +28,7 @@ const Ticketing = ({ role }) => {
     url: base_url + "/priority",
   });
 
-  const {
-    data: dataTicket,
-    insertData,
-    updateData,
-  } = useFetch({
+  const { data: dataTicket, updateData } = useFetch({
     url: base_url + "/ticket",
   });
 
@@ -55,11 +46,6 @@ const Ticketing = ({ role }) => {
     setOpenDrawer(true);
   };
 
-  const handleOpenFormTicket = () => {
-    setDataDetailTicket(null);
-    setOpenDrawer(true);
-  };
-
   const filterData = dataTicket?.filter((item) => {
     return (
       (filter.category ? item.category_id == filter.category : true) &&
@@ -70,7 +56,7 @@ const Ticketing = ({ role }) => {
 
   return (
     <div className="relative">
-      <Breadcrumb data={["Teknisi", "Ticket"]} />
+      <Breadcrumb data={["Admin", "Ticket"]} />
       <div className="flex justify-end gap-2 items-center">
         <Select
           data={dataCategory}

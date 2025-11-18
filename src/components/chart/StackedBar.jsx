@@ -6,6 +6,7 @@ const StackedBar = ({
   category,
   valueKey,
   countKey,
+  title,
 }) => {
   const categories = data?.map((item) => item[category]);
 
@@ -28,6 +29,15 @@ const StackedBar = ({
       bar: {
         horizontal: false,
         borderRadius: 6,
+      },
+    },
+    title: {
+      text: title,
+      align: "center",
+      style: {
+        fontSize: "12px",
+        fontWeight: "bold",
+        color: "#333",
       },
     },
     xaxis: {

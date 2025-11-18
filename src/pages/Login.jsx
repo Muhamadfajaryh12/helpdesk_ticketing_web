@@ -6,6 +6,7 @@ import AuthAPI from "../shared/AuthAPI";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { jwtDecode } from "jwt-decode";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { setAuth } = useAuth();
@@ -28,14 +29,20 @@ const Login = () => {
       decoded.role.toLowerCase() == "general"
         ? navigate("/general")
         : navigate("/admin");
+    } else {
+      toast.error(response.message);
     }
   };
   return (
     <div className="max-w-lg w-full">
       <form
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-4 bg-white rounded-md border p-4 border-gray-200"
         onSubmit={handleSubmit(handleLogin)}
       >
+        <h1 className="text-4xl font-extrabold text-center">Welcome</h1>
+        <p className="text-sm text-gray-500 text-center">
+          Please login with your account.
+        </p>
         <TextInput
           label={"Email"}
           name={"email"}

@@ -27,13 +27,13 @@ const ChartBar = ({
   const options = {
     chart: {
       type: "bar",
-      height: 350,
+      toolbar: { show: true },
+      zoom: { enabled: false },
     },
     plotOptions: {
       bar: {
         borderRadius: 6,
         horizontal: horizontal,
-        columnWidth: "45%",
       },
     },
     title: {
@@ -53,7 +53,11 @@ const ChartBar = ({
       title: { text: titleYaxis },
     },
   };
-  return <Chart options={options} series={series} type="bar" height={350} />;
+  return (
+    <div className="w-full">
+      <Chart options={options} series={series} type="bar" height={350} />
+    </div>
+  );
 };
 
 export default ChartBar;

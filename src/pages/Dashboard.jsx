@@ -11,7 +11,7 @@ const Dashboard = () => {
   console.log(data);
   return (
     <div>
-      <Breadcrumb data={["Teknisi", "Dashboard"]} />
+      <Breadcrumb data={["Admin", "Dashboard"]} />
       <div className="grid grid-cols-4 gap-4 mt-4 ">
         <div className="border border-gray-200 rounded-md p-4">
           <h6 className="text-sm font-bold mb-2">Total Ticket</h6>
@@ -38,13 +38,26 @@ const Dashboard = () => {
           </h1>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="border border-gray-200 rounded-md p-4">
+          <h6 className="text-sm font-bold mb-2">Total Technician</h6>
+          <h1 className="text-3xl font-extrabold">
+            {data.data?.summary_users?.total_technician}
+          </h1>
+        </div>
+        <div className="border border-gray-200 rounded-md p-4">
+          <h6 className="text-sm font-bold mb-2">Total Users</h6>
+          <h1 className="text-3xl font-extrabold">
+            {data.data?.summary_users?.total_general}
+          </h1>
+        </div>
         <StackedBar
           data={data?.data?.summary_category_priority}
           category={"category"}
           label={["Low", "Medium", "High", "Urgent"]}
           valueKey={"priority"}
           countKey={"total_ticket"}
+          title={"Total Ticket By Priority"}
         />
         <StackedBar
           data={data?.data?.summary_category_status}
@@ -59,6 +72,7 @@ const Dashboard = () => {
           ]}
           valueKey={"status"}
           countKey={"total_ticket"}
+          title={"Total Ticket By Status"}
         />
       </div>
       <ChartBar
@@ -66,6 +80,7 @@ const Dashboard = () => {
         category={"date"}
         valueKey={"total_ticket"}
         horizontal={false}
+        title={"Total Ticket Daily"}
       />
     </div>
   );

@@ -7,10 +7,10 @@ import { BsStarFill } from "react-icons/bs";
 const Review = () => {
   const BASE_URL = import.meta.env.VITE_API_URL;
   const { data } = useFetch({ url: BASE_URL + "/review" });
-  console.log(data);
+
   return (
     <div>
-      <Breadcrumb data={["Technician", "Review"]} />
+      <Breadcrumb data={["Admin", "Review"]} />
       <DataTable
         data={data}
         columns={[

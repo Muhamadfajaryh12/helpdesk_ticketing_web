@@ -34,14 +34,14 @@ const linkData = [
     access: "admin",
   },
   {
-    path: "/admin/Review",
+    path: "/admin/review",
     name: "Review",
     icon: <BsStar />,
     access: "admin",
   },
   {
-    path: "/admin/technician",
-    name: "Techician",
+    path: "/admin/users",
+    name: "Users",
     icon: <FaUser />,
     access: "admin",
   },

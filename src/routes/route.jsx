@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <MainLayout role={"admin"} />,
+    element: <MainLayout role={["Admin", "Technician"]} />,
     children: [
       {
         index: true,
@@ -47,14 +47,14 @@ const router = createBrowserRouter([
         element: <Review />,
       },
       {
-        path: "technician",
+        path: "users",
         element: <Technician />,
       },
     ],
   },
   {
     path: "/general",
-    element: <MainLayout role={"General"} />,
+    element: <MainLayout role={["General"]} />,
     children: [
       {
         index: true,

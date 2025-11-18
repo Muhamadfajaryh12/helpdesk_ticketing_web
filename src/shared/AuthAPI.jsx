@@ -12,7 +12,7 @@ const AuthAPI = (() => {
 
       return response.data;
     } catch (error) {
-      console.log(error);
+      return error.response.data;
     }
   };
 
@@ -30,9 +30,19 @@ const AuthAPI = (() => {
       console.log(error);
     }
   };
+
+  const DeleteUser = async ({ id }) => {
+    try {
+      const response = await axios.delete(`${baseURL}/${id}`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return {
     Login,
     InsertUser,
+    DeleteUser,
   };
 })();
 

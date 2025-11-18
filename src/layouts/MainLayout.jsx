@@ -12,7 +12,13 @@ const MainLayout = ({ role }) => {
   }
 
   if (!auth) return <Navigate to="/" replace />;
-  if (auth.role != role) return <Navigate to="/" replace />;
+  const userRole = auth?.role?.toLowerCase() || "";
+
+  const allowed = Array.isArray(role)
+    ? role.map((r) => r.toLowerCase()).includes(userRole)
+    : role.toLowerCase() === userRole;
+
+  if (!allowed) return <Navigate to="/" replace />;
 
   return (
     <main className="w-screen h-screen ">
