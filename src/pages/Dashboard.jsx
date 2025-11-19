@@ -7,8 +7,6 @@ import ChartBar from "../components/chart/ChartBar";
 const Dashboard = () => {
   const BASE_URL = import.meta.env.VITE_API_URL + "/dashboard";
   const data = useFetch({ url: BASE_URL });
-
-  console.log(data);
   return (
     <div>
       <Breadcrumb data={["Admin", "Dashboard"]} />

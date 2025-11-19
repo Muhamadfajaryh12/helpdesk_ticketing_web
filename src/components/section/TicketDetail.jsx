@@ -3,7 +3,6 @@ import StatusBadge from "../badge/StatusBadge";
 import PriorityBadge from "../badge/PriorityBadge";
 
 const TicketDetail = ({ data, setOpenDrawer }) => {
-  console.log(data);
   return (
     <div>
       <div className="mt-4">

@@ -57,7 +57,7 @@ const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const { auth } = useAuth();
   const path = useLocation();
-  console.log(path.pathname);
+
   return (
     <div
       className={`${

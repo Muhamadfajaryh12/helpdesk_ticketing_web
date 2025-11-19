@@ -22,7 +22,6 @@ const Technician = () => {
 
   const handleDelete = async (param) => {
     const response = await AuthAPI.DeleteUser({ id: param });
-    console.log(response);
   };
   return (
     <div>
