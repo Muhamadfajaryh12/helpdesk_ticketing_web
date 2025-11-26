@@ -12,23 +12,23 @@ const TicketDetail = ({ data, setOpenDrawer }) => {
         </div>
         <div className="my-2">
           <h6 className="font-semibold">Title</h6>
-          <p>{data.title}</p>
+          <p>{data?.title}</p>
         </div>
         <div className="my-2">
           <h6 className="font-semibold">Description</h6>
-          <p className="text-justify">{data.description}</p>
+          <p className="text-justify">{data?.description}</p>
         </div>
         <div className="my-2">
           <h6 className="font-semibold">Category</h6>
-          <p>{data.category}</p>
+          <p>{data?.category}</p>
         </div>
         <div className="my-2">
           <h6 className="font-semibold">Priority</h6>
-          <PriorityBadge priority={data.priority} />
+          <PriorityBadge priority={data?.priority} />
         </div>
         <div className="my-2">
           <h6 className="font-semibold">Assigned to</h6>
-          <p>{data.assigned}</p>
+          <p>{data?.assigned}</p>
         </div>
         <h6 className="font-semibold">Process Log</h6>
         <div className="flex flex-col gap-2">

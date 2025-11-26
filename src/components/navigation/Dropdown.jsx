@@ -25,7 +25,7 @@ const Dropdown = ({ text, linkData }) => {
       <div
         className={`${
           open == text ? "absolute" : "hidden"
-        }  bg-white border border-gray-200 top-7 w-32`}
+        }  bg-white border border-gray-200 top-7 right-2 w-32`}
       >
         {
           <ul>

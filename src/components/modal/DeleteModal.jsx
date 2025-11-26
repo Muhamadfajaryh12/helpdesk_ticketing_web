@@ -11,7 +11,7 @@ const DeleteModal = ({ onDelete, id }) => {
         <button onClick={closeModal}>X</button>
       </div>
       <IoIosWarning className="mx-auto text-red-500" size={40} />
-      <h1 className="font-bold text-center  mb-2">
+      <h1 className="text-center  my-4">
         This user will be marked as deleted. Do you want to continue?
       </h1>
       <PrimaryButton onClick={() => onDelete(id)} text={"Confirm"} />

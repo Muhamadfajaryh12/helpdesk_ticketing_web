@@ -13,15 +13,22 @@ import DeleteModal from "../components/modal/DeleteModal";
 
 const Technician = () => {
   const BASE_URL = import.meta.env.VITE_API_URL;
-  const { data: dataTechnician } = useFetch({
+  const { data: dataTechnician, deleteData: deleteTechician } = useFetch({
     url: BASE_URL + "/user/technician",
   });
-  const { data: dataGeneral } = useFetch({ url: BASE_URL + "/user/general" });
+  const { data: dataGeneral, deleteData: deleteGeneral } = useFetch({
+    url: BASE_URL + "/user/general",
+  });
   const [open, setOpen] = useState(false);
   const { openModal } = useModal();
 
   const handleDelete = async (param) => {
     const response = await AuthAPI.DeleteUser({ id: param });
+    if (response.status == "success") {
+      response.data.role == "Technician"
+        ? deleteTechician(response.data.id)
+        : deleteGeneral(response.data.id);
+    }
   };
   return (
     <div>

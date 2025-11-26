@@ -24,7 +24,10 @@ const UserForm = ({ setOpen }) => {
 
   return (
     <div>
-      <button onClick={() => setOpen(false)}>X</button>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="font-bold text-2xl">User Form</h1>
+        <button onClick={() => setOpen(false)}>X</button>
+      </div>
       <form
         className="flex flex-col gap-4"
         onSubmit={handleSubmit(handleSubmitUser)}
